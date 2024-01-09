@@ -8,19 +8,20 @@ import {
 } from "react-native";
 import axios from "axios";
 
-const Signup = ({ navigation }) => {
+const Signup = ({ onSignupSuccess }) => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 
   const submitHandler = async () => {
     console.log("signup");
-    console.log("Sending data:", { name, password });
+    //console.log("Sending data:", { name, password });
     try {
       const { data } = await axios.post("http://192.168.0.101:3000/api/user", {
         userName: name,
         Password: password,
       });
-      console.log(data);
+      onSignupSuccess();
+      //console.log(data);
     } catch (error) {
       console.error(
         "Error occurred while signing up:",
@@ -54,21 +55,23 @@ const Signup = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    //flex: 1,
-    padding: 20,
-    justifyContent: "center",
+    container: {
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+    },
   },
   input: {
-    height: 40,
+    height: 50, // Increase the height
     borderColor: "gray",
     borderWidth: 1,
     marginBottom: 20,
-    paddingHorizontal: 10,
+    paddingHorizontal: 15, // Adjust padding
   },
   uploadButton: {
     backgroundColor: "blue",
     padding: 15,
-    borderRadius: 5,
+    //borderRadius: 5,
     alignItems: "center",
     marginVertical: 10,
   },
@@ -78,7 +81,7 @@ const styles = StyleSheet.create({
   signupButton: {
     backgroundColor: "blue",
     padding: 15,
-    borderRadius: 5,
+    //borderRadius: 5,
     alignItems: "center",
   },
   signupButtonText: {

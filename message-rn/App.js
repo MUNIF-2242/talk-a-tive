@@ -5,6 +5,7 @@ import ChatScreen from "./screens/ChatScreen";
 import HomeScreen from "./screens/HomeScreen";
 import { StyleSheet } from "react-native";
 import ChatProvider from "./Context/ChatProvider";
+import MessageScreen from "./screens/MessageScreen";
 
 const Stack = createStackNavigator();
 
@@ -13,12 +14,13 @@ export default function App() {
     <NavigationContainer>
       <ChatProvider>
         <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen
-            name="Chat"
-            component={ChatScreen}
-            options={{ title: "Chat" }}
+            name="Home"
+            component={HomeScreen}
+            options={{ headerShown: false }}
           />
+          <Stack.Screen name="Chat" component={ChatScreen} />
+          <Stack.Screen name="Message" component={MessageScreen} />
         </Stack.Navigator>
       </ChatProvider>
     </NavigationContainer>
